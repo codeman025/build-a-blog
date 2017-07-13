@@ -7,6 +7,34 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:1234@local
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
+form = """
+<!doctype html>
+<html>
+    <body>
+        <form action="/blogpost" method="post">
+            <label for="first-name">First Name:</label>
+            <input type="text" name="first_name" />
+            <input type="submit" />
+        </form>
+    </body>
+</html>
+"""
+#forms in flask code
+# @app.route("/")
+#def index():
+#   return form
+
+#   app.run()
+
+#if 'post' need the specify methods
+@app.route("/blogpost", methods=['POST','GET'])
+def hello():
+    first_name = request.form['first_name']
+    return '<h1>Hello, ' + first_name + '</h1>'
+
+
+
+@app.route("/")
 class Task(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -14,6 +42,18 @@ class Task(db.Model):
 
     def __init__(self, name):
         self.name = name
+
+class Blog(id,title,body):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120))
+    body = db.Column(db.String(1000))
+
+    def __init__(self,title,body)
+        self.title = title
+        self.body = body
+
+@app.route('/blog', methods= ['GET'])
+@app.route('newpost', methods=['GET'])
 
 tasks = []
 
