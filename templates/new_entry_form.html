@@ -1,0 +1,24 @@
+{% extends "buildbase.html" %}
+
+<!--
+    Blog entry form
+    Requires:
+        new_entry_title (may be empty)
+        new_entry_body (may be empty)
+
+    -->
+
+{% block content %}
+
+<h1> tell me a story?</h1>
+<form action="/new_entry" method="post">
+
+    <label for ="title_field">What is your stories name</label>
+    <input id="title_field" name="title" type="text" value="{{new_entry_title}}">
+
+    <label for="body_field">Tell me more:</label>
+    <textarea rows="4" cols="50" id="body_field" name="body">{{new_entry_body}}</textarea>
+
+<input id="submit_button" type="submit" value="Save">
+</form>
+{% endblock %}

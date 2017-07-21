@@ -7,6 +7,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:1234@local
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
+
+#single blog entry url = ./blog?id=6
+
 form = """
 <!doctype html>
 <html>
@@ -25,12 +28,14 @@ form = """
 #   return form
 
 #   app.run()
-
+#form_value = request.args.get("whatevernameforGETmethod")
+#http://localhost:5000/blogpost?first_name=userinput
 #if 'post' need the specify methods
 @app.route("/blogpost", methods=['POST','GET'])
 def hello():
     first_name = request.form['first_name']
     return '<h1>Hello, ' + first_name + '</h1>'
+
 
 
 
@@ -48,14 +53,16 @@ class Blog(id,title,body):
     title = db.Column(db.String(120))
     body = db.Column(db.String(1000))
 
-    def __init__(self,title,body)
+    def __init__(self,title,body):
         self.title = title
         self.body = body
+
+tasks = []
 
 @app.route('/blog', methods= ['GET'])
 @app.route('newpost', methods=['GET'])
 
-tasks = []
+
 
 @app.route('/',methods=['POST', 'GET'])
 def index():
